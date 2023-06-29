@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-mini-ms-posts
+spec:
+  containers:
+    - name: node-mini-ms-posts
+      image: node-mini-ms/posts:0.0.1

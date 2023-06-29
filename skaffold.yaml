@@ -1,0 +1,59 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+build:
+  artifacts:
+    - image: gozie213/nodemini-ms-client
+      context: client
+      sync:
+        manual:
+          - src: src/**/*.js
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: gozie213/nodemini-ms-comments
+      context: comments
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: gozie213/nodemini-ms-event-bus
+      context: event-bus
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: gozie213/nodemini-ms-moderation
+      context: moderation
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: gozie213/nodemini-ms-posts
+      context: posts
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: gozie213/nodemini-ms-query
+      context: query
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
+deploy:
+  kubectl: {}
